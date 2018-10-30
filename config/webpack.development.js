@@ -5,7 +5,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin')
 module.exports = {
   mode: 'development',
 
-  entry: './src/app.js',
+  entry: ['@babel/polyfill', './src/app.js'],
 
   output: {
     filename: '[name].js',
@@ -17,7 +17,12 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       },
       {
         test: /\.css$/,

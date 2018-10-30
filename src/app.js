@@ -1,10 +1,20 @@
 import './app.css'
-import PWSDK from 'pw-app-sdk'
-const sdk = PWSDK.init()
+import Copper from 'copper-sdk'
+const sdk = Copper.init()
 
-async function main() {
-  const context = await sdk.getContext()
-  document.getElementById('root').innerHTML = JSON.stringify(context)
+function main() {
+
+  renderContext()
+  sdk.on('contextUpdated', () => {
+    renderContext()
+  })
+}
+
+async function renderContext() {
+  const { context } = await sdk.getContext()
+  const { id, name } = context
+  const text = `ID: ${id}, NAME: ${name}`
+  document.getElementById('root').innerHTML = text
 }
 
 main()

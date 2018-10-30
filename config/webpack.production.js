@@ -5,11 +5,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
   mode: 'production',
 
-  entry: './src/app.js',
+  entry: ['@babel/polyfill', './src/app.js'],
 
   output: {
     filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist')
   },
 
   module: {
@@ -17,32 +17,37 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
       },
       {
         test: /\.html$/,
         use: [
           {
             loader: 'html-loader',
-            options: { minimize: true },
-          },
-        ],
+            options: { minimize: true }
+          }
+        ]
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      },
-    ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      }
+    ]
   },
 
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',
-      filename: './index.html',
+      filename: './index.html'
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
-      chunkFilename: '[id].css',
-    }),
-  ],
+      chunkFilename: '[id].css'
+    })
+  ]
 }

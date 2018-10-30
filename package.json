@@ -7,35 +7,37 @@
     "start": "webpack-dev-server --config config/webpack.development.js",
     "build": "npm run clean && webpack --config config/webpack.production.js",
     "clean": "rimraf dist",
-    "publish":
-      "yarn build && cd dist && git init && git checkout -b gh-pages && git add . && git commit -m 'publish to gh pages' && git push git@github.com:ProsperWorks/pw-app-basic-sample.git gh-pages --force"
+    "publish": "yarn build && cd dist && git init && git checkout -b gh-pages && git add . && git commit -m 'publish to gh pages' && git push git@github.com:ProsperWorks/pw-app-basic-sample.git gh-pages --force"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/guangda-prosperworks/pw-app-basic-sample.git"
   },
-  "keywords": ["pw-app-sdk", "sample"],
+  "keywords": [
+    "copper-sdk",
+    "sample"
+  ],
   "author": "Guangda Zhang <zhangxiaoyu9350@gmail.com>",
   "bugs": {
     "url": "https://github.com/guangda-prosperworks/pw-app-basic-sample/issues"
   },
-  "homepage":
-    "https://github.com/guangda-prosperworks/pw-app-basic-sample#readme",
+  "homepage": "https://github.com/guangda-prosperworks/pw-app-basic-sample#readme",
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "css-loader": "^0.28.11",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
     "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.1.0",
-    "mini-css-extract-plugin": "^0.3.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.4",
     "rimraf": "^2.6.2",
-    "style-loader": "^0.20.3",
-    "webpack": "^4.3.0",
-    "webpack-cli": "^2.0.13",
-    "webpack-dev-server": "^3.1.1"
+    "style-loader": "^0.23.1",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
-    "babel-preset-es2017": "^6.24.1",
-    "pw-app-sdk": "^0.2.5"
+    "@babel/polyfill": "^7.0.0",
+    "copper-sdk": "^0.5.0"
   }
 }
